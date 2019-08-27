@@ -1,2 +1,1 @@
-# Windows-Make
-Make tool for Windows
+Windows Make Project
