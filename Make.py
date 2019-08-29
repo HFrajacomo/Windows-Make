@@ -1,4 +1,4 @@
-import os
+from subprocess import check_output
 import sys
 
 def better_replace(text, chars=[" ", "\t", "\n"]):
@@ -41,12 +41,16 @@ for line in make_data:
 if(executions != []):
 	hashing[current_rule] = executions
 
-print(hashing)
-'''
+
 # Check rule
 try:
 	query = sys.argv[1]
 except IndexError:
 	query = "all"
 
-'''
+if(query not in hashing.keys()):
+	print("MAKE: Rule '" + query + "' not found")
+	exit()
+else:
+	for element in hashing[query]:
+		print(check_output(["powershell", element], universal_newlines=True))
